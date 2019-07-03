@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Main from './Main';
+import BookService from './bookService';
+import {Container, Row, Col} from 'react-bootstrap';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            books: BookService.getAllBooks()
+        }
+    }
+
+    render() {
+        return (
+            <Container fluid={true}>
+                <Main books={this.state.books}/>
+                {/* <Col md={2}><Main books={this.state.books} /></Col>
+                <Col md={2}>Second Column</Col>
+                <Col md={2}>Third Column</Col>
+                <Col md={2}>Fourth Column</Col>
+                <Col md={2}>Fifth Column</Col>
+                <Col md={2}>Sixth Column</Col> */}
+            </Container>
+        );
+    }
 }
 
-export default App;
+
+App.propTypes = {
+    
+};
+
+export default App
